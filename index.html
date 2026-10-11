@@ -349,6 +349,17 @@ html{scroll-padding-top:64px}
 .totop:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
 /* Cinema block */
 .cine{margin:0}.cine li{margin:0 0 6px}.cine b{color:var(--ink)}
+
+/* v3: button "К ГЛАВНОМУ МЕНЮ" and bold menu items */
+.totop{background:#1769D2;color:#fff;border:2px solid #1769D2;min-height:48px;padding:12px 18px;gap:8px;font:700 14px/1.2 var(--body);letter-spacing:.02em;white-space:nowrap;max-width:calc(100vw - 32px);bottom:max(16px,env(safe-area-inset-bottom));right:max(16px,env(safe-area-inset-right));box-shadow:0 3px 12px rgba(0,0,0,.35);touch-action:manipulation}
+.totop:hover{background:#125BB8;border-color:#125BB8}
+.totop:active{background:#0E4A99;border-color:#0E4A99;transform:scale(.97)}
+.totop:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .totop{border-color:#6AA8F0}}
+:root[data-theme="dark"] .totop{border-color:#6AA8F0}
+.anav:focus{outline:none}
+.anav a{font-weight:700;font-size:15px}
+.route a b{font-weight:700}
 </style>
 </head>
 <body>
@@ -359,7 +370,7 @@ html{scroll-padding-top:64px}
     <div class="logo">LAW<i>START</i></div>
     <div class="tag">Навигатор по юридическому образованию</div>
   </header>
-  <nav class="anav" aria-label="Разделы сайта"><a href="#test">Тест</a><a href="#catalog">Каталог</a><a href="#abroad">Зарубежье</a><a href="#second">Второе высшее</a><a href="#fields">Направления</a><a href="#english">Legal English</a><a href="#admission">Поступление</a><a href="#funding">Стипендии</a><a href="#faq">Вопросы</a><a href="#about">О проекте</a></nav>
+  <nav class="anav" id="main-menu" aria-label="Главное меню: разделы сайта"><a href="#test">Тест</a><a href="#catalog">Каталог</a><a href="#abroad">Зарубежье</a><a href="#second">Второе высшее</a><a href="#fields">Направления</a><a href="#english">Legal English</a><a href="#admission">Поступление</a><a href="#funding">Стипендии</a><a href="#faq">Вопросы</a><a href="#about">О проекте</a></nav>
   <main id="main" tabindex="-1">
 
   <div class="hero">
@@ -6245,7 +6256,7 @@ var LEC_FUTURE = [
 })();
 </script>
 
-<button type="button" class="totop" id="totop" aria-label="Наверх" hidden>↑ Наверх</button>
+<button type="button" class="totop" id="totop" aria-label="К главному меню" hidden>↑ К ГЛАВНОМУ МЕНЮ</button>
 <script>
 (function(){
   var b=document.getElementById('totop');if(!b)return;
@@ -6255,6 +6266,8 @@ var LEC_FUTURE = [
   window.addEventListener('scroll',upd,{passive:true});upd();
   b.addEventListener('click',function(){
     try{window.scrollTo({top:0,behavior:reduce?'auto':'smooth'})}catch(e){window.scrollTo(0,0)}
+    var m=document.getElementById('main-menu');
+    if(m){try{m.setAttribute('tabindex','-1');m.focus({preventScroll:true})}catch(e){}}
   });
 })();
 </script>
